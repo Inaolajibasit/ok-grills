@@ -203,6 +203,11 @@ Homepage features, /menu, the persisted cart, /build-a-box, /events, and /cart c
 - The menu heading's yellow period is now a small inline bullet-hole accent. Removed the unused tagline prop from GrillStory and its homepage invocation; business content and ordering behavior remain unchanged.
 - Lint and standalone TypeScript checks passed. Homepage, /menu, and the replacement asset returned HTTP 200; rendered HTML confirms the new photo decorations and menu heading accent. Screenshot/real-device verification remains outstanding.
 
+## Brand Favicon — 2026-10-08
+
+- Replaced the starter favicon with the existing OK Grills logo on a bone background, encoded as a multi-size ICO (16, 32, and 48px). Added a 180px Apple touch icon using the same logo. Next.js file metadata automatically emits both icon links.
+- Lint and standalone TypeScript checks passed. Homepage returned HTTP 200 with favicon and Apple touch links; both icon routes returned HTTP 200 with their expected image types. ICO entries were checked for all three sizes. Browser tab/home-screen appearance remains unverified.
+
 ## Next Task
 
 Heavy Hitters remains the next homepage section. About and remaining homepage sections can follow when requested; V1 ordering now hands requests to WhatsApp for confirmation.
