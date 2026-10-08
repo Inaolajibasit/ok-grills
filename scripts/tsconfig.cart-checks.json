@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "noEmit": false,
+    "incremental": false,
+    "rootDir": "..",
+    "outDir": "../.cache/cart-checks"
+  },
+  "include": ["check-cart.ts", "check-build-box.ts", "check-events.ts", "check-checkout.ts"],
+  "exclude": ["../node_modules", "../.next", "../.cache"]
+}

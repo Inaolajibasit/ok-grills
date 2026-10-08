@@ -1,0 +1,18 @@
+.checkout { border: 1px solid var(--line); border-radius: 22px; padding: clamp(1.25rem, 3vw, 2rem); background: var(--charcoal); }
+.eyebrow { color: var(--brand); text-transform: uppercase; letter-spacing: .12em; font-size: .7rem; font-weight: 700; }
+.checkout h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; margin-top: .6rem; }
+.checkout h2 span { color: var(--brand); }
+.notice, .help { color: var(--ash); font-size: .85rem; line-height: 1.7; margin-block: 1rem; }
+.fields { min-width: 0; display: grid; gap: 1.2rem; margin-block: 1.5rem; }
+.field { min-width: 0; }
+.field label, .handoff label { display: block; font-size: .85rem; font-weight: 700; margin-bottom: .5rem; }
+.field input, .field textarea, .handoff textarea { width: 100%; padding: .8rem; min-height: 48px; border: 1px solid var(--line); border-radius: 10px; background: var(--ink); color: var(--bone); font-size: 1rem; line-height: 1.6; }
+.field textarea, .handoff textarea { resize: vertical; }
+.error { color: #ff9b87; font-size: .8rem; line-height: 1.5; margin-top: .4rem; }
+.field [aria-invalid=true] { border-color: #ff9b87; }
+.cta { width: 100%; min-height: 52px; border-radius: 999px; margin-top: 1rem; }
+.checkout :focus-visible { outline: 2px solid var(--brand); outline-offset: 4px; }
+.handoff { margin-top: 1.5rem; border-top: 1px solid var(--line); padding-top: 1.5rem; }
+.handoff a { display: inline-flex; align-items: center; min-height: 48px; color: var(--brand); font-weight: 700; margin-top: .75rem; }
+.handoff p { font-size: .8rem; line-height: 1.6; color: var(--ash); }
+@media (min-width: 640px) { .fields { grid-template-columns: repeat(2, minmax(0, 1fr)); } .wide { grid-column: 1 / -1; } }

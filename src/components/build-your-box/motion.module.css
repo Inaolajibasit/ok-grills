@@ -1,0 +1,22 @@
+.ingredientEnter {
+  animation: ingredient-enter 200ms ease-out both;
+}
+
+.quantityPulse {
+  animation: quantity-pulse 180ms ease-out;
+}
+
+@keyframes ingredient-enter {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes quantity-pulse {
+  from { transform: scale(0.9); }
+  to { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ingredientEnter,
+  .quantityPulse { animation: none; }
+}

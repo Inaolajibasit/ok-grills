@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+/.cache/cart-checks/
+/.cache/ux-review/
 
 # next.js
 /.next/

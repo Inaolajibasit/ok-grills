@@ -1,0 +1,35 @@
+.story { background: var(--ink); color: var(--bone); padding: clamp(3rem, 6vw, 6rem) 0; border-top: 1px solid var(--line); }
+.intro { margin-bottom: 3rem; }
+.eyebrow { color: var(--brand); font-size: .7rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.intro h2 { font-family: var(--font-story-display), Georgia, serif; font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.15; max-width: 800px; margin-top: 1rem; }
+.stickyMedia { display: none; }
+.stages { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.5rem; }
+.stage { display: grid; gap: 1.5rem; border-top: 1px solid var(--line); padding-top: 1.5rem; }
+.number { display: inline-block; color: var(--brand); font-size: .8rem; margin-bottom: .75rem; }
+.stage h3 { font-family: var(--font-story-display), Georgia, serif; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; text-wrap: balance; }
+.stageCopy > p { max-width: 380px; color: var(--ash); font-size: 1rem; line-height: 1.7; margin-top: 1rem; }
+.fallbackMedia { position: relative; aspect-ratio: 4 / 3; border-radius: 22px; overflow: hidden; background: var(--charcoal); }
+.fallbackMedia img, .mediaPanel img { object-fit: cover; }
+.action { margin-top: 2.5rem; }
+@media (min-width: 768px) {
+  .stage { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 3rem; }
+}
+@media (min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+  .story[data-story-enhanced="true"] .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+  .story[data-story-enhanced="true"] .stickyMedia { display: block; position: sticky; top: 10vh; }
+  .mediaFrame { position: relative; height: min(72vh, 720px); overflow: hidden; border-radius: 28px; background: var(--charcoal); isolation: isolate; }
+  .mediaPanel { position: absolute; inset: 0; opacity: 0; visibility: hidden; }
+  .caption { position: absolute; bottom: 0; inset-inline: 0; padding: 4rem 1.5rem 1.5rem; background: linear-gradient(transparent, #000d); color: #fff; }
+  .caption span { font-size: .75rem; letter-spacing: .12em; color: var(--brand); }
+  .caption p { font-weight: 800; margin-top: .4rem; }
+  .story[data-story-enhanced="true"] .stages { gap: 0; }
+  .story[data-story-enhanced="true"] .stage { display: flex; align-items: center; min-height: 48vh; padding: 2rem 0; }
+  .story[data-story-enhanced="true"] .stage h3 { transition: color 200ms ease; }
+  .story[data-story-enhanced="true"] .stage[data-active="true"] h3 { color: var(--brand); }
+  .story[data-story-enhanced="true"] .fallbackMedia { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .story *, .story *::before, .story *::after { transition: none; animation: none; }
+}
+
+.photoBullet { top: .65rem; left: .65rem; z-index: 2; width: clamp(3rem, 6vw, 5rem); transform: rotate(-12deg); }

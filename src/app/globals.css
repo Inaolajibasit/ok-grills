@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --brand: #fcee23;
+  --accent: #f5290a;
+  --ink: #0d0d0d;
+  --charcoal: #1b1a18;
+  --smoke: #272522;
+  --bone: #f5e9cc;
+  --ash: #bdb8ad;
+  --line: rgb(245 233 204 / 18%);
+  --page-gutter: 1.25rem;
+  --section-space: 4.5rem;
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-accent: var(--accent);
+  --color-ink: var(--ink);
+  --color-charcoal: var(--charcoal);
+  --color-smoke: var(--smoke);
+  --color-bone: var(--bone);
+  --color-ash: var(--ash);
+  --color-line: var(--line);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --page-gutter: 2rem;
+    --section-space: 6rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --page-gutter: 3rem;
+    --section-space: 8rem;
+  }
+}
+
+html {
+  background: var(--ink);
+}
+
+body {
+  min-width: 320px;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--brand);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+body:has([data-home-hero]) > header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 40;
+  border-color: transparent;
+  background: transparent;
+}
+
+body:has([data-home-hero]) > header > div {
+  max-width: none;
+}
+
+body:has([data-home-hero]) > header a[aria-label$="home"] {
+  color: #fff;
+}
+
+body:has([data-home-hero]) > header button[data-cart-trigger] {
+  border-color: #fff;
+  border-radius: 9999px;
+  background: #fff;
+  color: var(--ink);
+}

@@ -1,0 +1,8 @@
+.mark {
+  position: absolute;
+  width: clamp(2.75rem, 5vw, 4.5rem);
+  aspect-ratio: 1;
+  background: url("/images/bullet-hole.png") center / contain no-repeat;
+  pointer-events: none;
+  user-select: none;
+}

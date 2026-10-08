@@ -1,0 +1,32 @@
+.campaign {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: var(--charcoal);
+  color: var(--bone);
+  border-block: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 7vw, 7rem);
+}
+.campaign::before { content: ''; position: absolute; inset: 1rem; border: 1px solid var(--line); z-index: -1; pointer-events: none; }
+.layout { display: grid; gap: 3rem; align-items: center; }
+.copy { position: relative; z-index: 2; min-width: 0; }
+.eyebrow { display: flex; align-items: center; gap: .75rem; font-size: clamp(.7rem, 1.1vw, .9rem); font-weight: 700; letter-spacing: .16em; }
+.eyebrow::before { content: ''; width: 1.5rem; height: 2px; background: var(--accent); flex-shrink: 0; }
+.headline { font-family: var(--font-feast-display), Georgia, serif; color: var(--brand); font-size: clamp(3.5rem, 18vw, 8rem); line-height: .96; font-weight: 400; letter-spacing: -.035em; margin: 1.5rem 0 2rem; }
+.headline span { display: block; }
+.price { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -.035em; margin-bottom: 1.5rem; font-variant-numeric: tabular-nums; }
+.cta { min-height: 52px; padding: 1rem 1.4rem; gap: 1rem; border-radius: 999px; }
+.cta:focus-visible { outline: 2px solid var(--brand); outline-offset: 5px; }
+.visual { position: relative; min-width: 0; }
+.visual::before { content: ''; position: absolute; width: 90%; aspect-ratio: 1; right: -10%; top: 8%; border-radius: 50%; background: var(--accent); z-index: -1; }
+.photoFrame { position: relative; aspect-ratio: 1; border-radius: 28px; background: #fff; overflow: hidden; box-shadow: 0 25px 65px #0005; transform-origin: center; }
+.photo { object-fit: contain; padding: .75rem; }
+.cornerMark { right: -.35rem; bottom: -1rem; width: clamp(3.5rem, 6vw, 5rem); transform: rotate(15deg); }
+@media (min-width: 768px) {
+  .layout { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(1.5rem, 4vw, 4rem); }
+  .headline { font-size: clamp(4rem, 8.3vw, 9rem); }
+  .visual { margin-right: .5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .campaign *, .campaign *::before, .campaign *::after { animation: none; transition: none; }
+}

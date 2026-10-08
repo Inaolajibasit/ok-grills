@@ -1,0 +1,50 @@
+.page { background: var(--ink); color: var(--bone); padding-block: clamp(3rem, 6vw, 6rem); }
+.hero { display: grid; gap: 2.5rem; align-items: center; margin-bottom: 5rem; }
+.eyebrow { color: var(--brand); font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.hero h1 { font-family: var(--font-events-display), Georgia, serif; font-size: clamp(2.8rem, 8vw, 7rem); line-height: 1.05; letter-spacing: -.03em; margin-block: 1.3rem; }
+.hero h1 span { display: block; }
+.hero h1 span:last-child { color: var(--brand); }
+.supporting { color: var(--ash); line-height: 1.8; max-width: 480px; }
+.heroAction { margin-top: 1.5rem; border-radius: 999px; min-height: 48px; }
+.heroImage { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 28px; background: white; }
+.heroImage img, .packageImage img { object-fit: contain; }
+.form { display: grid; gap: 4.5rem; }
+.packages { min-width: 0; }
+.packages legend { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700; margin-bottom: 2rem; }
+.packages legend span { display: block; font-family: var(--font-sans), sans-serif; color: var(--ash); font-size: .85rem; line-height: 1.6; font-weight: 400; margin-top: .6rem; }
+.packageGrid { display: grid; gap: 1.25rem; }
+.package { border: 1px solid var(--line); padding: 1.1rem; border-radius: 24px; background: var(--charcoal); display: flex; flex-direction: column; }
+.package:has(input:checked) { border-color: var(--brand); }
+.packageImage { position: relative; aspect-ratio: 4 / 3; border-radius: 16px; background: white; overflow: hidden; margin-bottom: 1.3rem; }
+.package h2 { font-family: var(--font-events-display), Georgia, serif; font-size: clamp(1.5rem, 2vw, 2rem); line-height: 1.2; }
+.package p { font-size: .85rem; color: var(--ash); line-height: 1.7; margin-top: .8rem; }
+.package strong { margin-top: auto; padding-top: 1rem; font-size: .85rem; color: var(--brand); }
+.package label, .unsure { display: flex; align-items: center; gap: .75rem; min-height: 48px; font-size: .8rem; margin-top: .6rem; cursor: pointer; }
+.package input, .unsure input { accent-color: var(--brand); width: 20px; height: 20px; flex-shrink: 0; }
+.unsure { margin-top: 1rem; }
+.enquiry { border: 1px solid var(--line); border-radius: 28px; padding: clamp(1.25rem, 4vw, 3rem); background: var(--charcoal); scroll-margin-top: 1.5rem; }
+.formIntro { margin-bottom: 2rem; }
+.formIntro h2 { font-family: var(--font-events-display), Georgia, serif; font-size: clamp(2rem, 4vw, 4rem); line-height: 1.15; margin-top: .7rem; }
+.formIntro h2 span { color: var(--brand); }
+.formIntro > p:last-child { margin-top: 1rem; color: var(--ash); font-size: .9rem; line-height: 1.7; }
+.fields { min-width: 0; display: grid; gap: 1.3rem; }
+.field { min-width: 0; }
+.field label, .draft > label { display: block; font-size: .8rem; font-weight: 700; margin-bottom: .5rem; }
+.field input, .field select, .field textarea, .draft textarea { width: 100%; min-height: 48px; background: var(--ink); color: var(--bone); border: 1px solid var(--line); border-radius: 10px; padding: .75rem; font-size: 1rem; }
+.field textarea, .draft textarea { resize: vertical; line-height: 1.6; }
+.field [aria-invalid=true] { border-color: #ff9b87; }
+.error { color: #ff9b87; font-size: .8rem; line-height: 1.5; margin-top: .4rem; }
+.submit { margin-top: 1.5rem; min-height: 52px; border-radius: 999px; }
+.help { font-size: .75rem; line-height: 1.6; color: var(--ash); margin-top: .8rem; }
+.draft { border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem; }
+.draft > p { margin-bottom: 1rem; color: var(--brand); }
+.draftActions { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; margin-block: 1rem; }
+.draftActions p { font-size: .8rem; color: var(--ash); line-height: 1.6; }
+.whatsapp { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .8rem 1.3rem; background: var(--brand); color: var(--ink); font-size: .85rem; font-weight: 700; border-radius: 999px; }
+.page :focus-visible { outline: 2px solid var(--brand); outline-offset: 4px; }
+@media (min-width: 768px) {
+  .hero { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+  .packageGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wide { grid-column: 1 / -1; }
+}

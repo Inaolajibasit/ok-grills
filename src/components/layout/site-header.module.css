@@ -1,0 +1,37 @@
+.star {
+  display: block;
+  flex: none;
+  width: 9.5rem;
+  height: 9.5rem;
+  max-width: none;
+  animation: star-spin 20s linear infinite;
+}
+
+@keyframes star-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (hover: hover) {
+  .logo:hover .star {
+    animation-duration: 4s;
+  }
+}
+
+.logo:focus-visible .star {
+  animation-duration: 4s;
+}
+
+@media (min-width: 40rem) {
+  .star {
+    width: 11rem;
+    height: 11rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star {
+    animation: none;
+  }
+}
