@@ -208,6 +208,37 @@ Homepage features, /menu, the persisted cart, /build-a-box, /events, and /cart c
 - Replaced the starter favicon with the existing OK Grills logo on a bone background, encoded as a multi-size ICO (16, 32, and 48px). Added a 180px Apple touch icon using the same logo. Next.js file metadata automatically emits both icon links.
 - Lint and standalone TypeScript checks passed. Homepage returned HTTP 200 with favicon and Apple touch links; both icon routes returned HTTP 200 with their expected image types. ICO entries were checked for all three sizes. Browser tab/home-screen appearance remains unverified.
 
+## Mobile Ticker and Navigation — 2026-10-08
+
+- Straight TextLoop tickers now use a dedicated LineTicker component with two equal, naturally sized HTML text groups. Removed SVG text-length compression from the hero ticker, eliminating cramped/overlapping lettering. Travel distance is exactly one group; ResizeObserver adjusts duration for the configured speed. Existing playback pause, hover pause, reverse direction, and reduced-motion behavior are preserved. Mobile ticker remains large with a 32px font and 80px minimum height.
+- Mobile navigation is a native modal dialog with a full-height, 80%-width right drawer and dark backdrop. Tapping outside, pressing Escape, selecting a link, or using Close dismisses it; desktop resizing closes it. Native focus containment, restored trigger focus, body scroll locking, safe-area padding, and independent panel scrolling are included. Links enter from the left with staggered subtle horizontal overshoot; reduced motion disables the slides/bounce. Your cart links directly to /cart.
+- Lint and standalone TypeScript checks passed without warnings. Homepage and /menu returned HTTP 200. An isolated headless Chrome test at 390x844 verified a 312px-wide, 844px-tall panel, focus inside the open dialog, body scroll locking, backdrop dismissal with trigger focus restoration, and Escape dismissal. Ticker groups have equal widths and zero overlap/gap at their boundary; page has no horizontal overflow. Real iPhone/Safari verification remains outstanding. The ignored browser check is .cache/ux-review/check-mobile-menu.mts.
+
+## Smaller Mobile Logo — 2026-10-08
+
+- Shared header logo now uses explicit responsive CSS: 64px on screens below 640px, with a 112px rotating star behind it. Larger screens retain the 96px logo and 176px star.
+- Lint and standalone TypeScript checks passed. Homepage and /menu returned HTTP 200. Isolated Chrome at 390px confirmed the 64px rendered logo, 112px computed star dimensions, and no document overflow. Real-device appearance remains unverified.
+
+## Sticky Navigation — 2026-10-08
+
+- Shared header now sticks at the top on every route. Homepage retains the header overlay via a negative margin instead of absolute positioning, with a dark 92%-opaque background for readability while scrolling. Anchor scroll padding accounts for the header height on mobile and desktop.
+- Lint and standalone TypeScript checks passed. Isolated Chrome checks on / and /menu at 390px and 1440px confirmed sticky positioning, a header top of 0 after scrolling 700px, and no horizontal overflow. Real-device Safari testing remains outstanding.
+
+## Delayed Navbar Background — 2026-10-08
+
+- Homepage sticky navbar stays transparent through the hero and category sections. A small HeaderScrollState client component adds the dark background when the grill-story section reaches the header, reversing when scrolling back above that boundary. Passive scroll updates are coalesced with requestAnimationFrame; resize/layout changes and route cleanup are handled. Header remains server-rendered; other routes retain their dark background.
+- Lint and standalone TypeScript checks passed. Isolated Chrome at 390px and 1440px confirmed transparent homepage entry, dark background at grill story, transparent restoration at the top, and dark /menu header, with no horizontal overflow. Real-device Safari verification remains outstanding.
+
+## Hide-on-scroll Navigation — 2026-10-08
+
+- Shared navbar hides while scrolling down past its own height and reappears when scrolling up or returning near the top. An 8px scroll threshold prevents small-motion flicker. Keyboard focus and open dialogs keep navigation visible; route changes reset visibility. Homepage delayed background still uses the grill-story boundary, measured independently of the header transform. Existing reduced-motion rules suppress transition motion.
+- Lint and standalone TypeScript checks passed. Isolated Chrome checks on / and /menu at 390px and 1440px confirmed full upward concealment on down-scroll, return to top:0 on up-scroll, visible navigation at page top, and no horizontal overflow. Real-device Safari testing remains outstanding.
+
+## Navbar Background After Hero — 2026-10-08
+
+- Homepage navbar background now turns dark when the end of the hero reaches the navbar, replacing the previous grill-story threshold. Hide-on-scroll behavior is preserved; returning into the hero restores transparency.
+- Lint and standalone TypeScript checks passed. Isolated Chrome at 390px and 1440px verified transparency at the top, dark background at the hero boundary, and transparent restoration when returning to the top. /menu retains its dark header. Real-device Safari verification remains outstanding.
+
 ## Next Task
 
 Heavy Hitters remains the next homepage section. About and remaining homepage sections can follow when requested; V1 ordering now hands requests to WhatsApp for confirmation.

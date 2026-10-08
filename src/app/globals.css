@@ -47,6 +47,7 @@
 
 html {
   background: var(--ink);
+  scroll-padding-top: 11rem;
 }
 
 body {
@@ -83,11 +84,20 @@ a {
   }
 }
 body:has([data-home-hero]) > header {
-  position: absolute;
-  inset: 0 0 auto;
+  margin-bottom: -10rem;
   z-index: 40;
   border-color: transparent;
   background: transparent;
+}
+
+body:has([data-home-hero]) > header[data-scrolled="true"] {
+  background: rgb(13 13 13 / 92%);
+  border-color: var(--line);
+}
+
+@media (min-width: 64rem) {
+  html { scroll-padding-top: 12.5rem; }
+  body:has([data-home-hero]) > header { margin-bottom: -11.5rem; }
 }
 
 body:has([data-home-hero]) > header > div {

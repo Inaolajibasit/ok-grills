@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { HeaderScrollState } from "./header-scroll-state";
 import Link from "next/link";
 import { MobileNavigation } from "@/components/layout/mobile-navigation";
 import { headerNavigationLinks } from "@/components/layout/navigation-links";
@@ -14,7 +15,8 @@ interface SiteHeaderProps {
 
 export function SiteHeader({ businessName, logoSrc, starSrc }: SiteHeaderProps) {
   return (
-    <header className="relative z-40 border-b border-line bg-ink">
+    <header className={`${styles.header} z-40 border-b border-line bg-ink`}>
+      <HeaderScrollState />
       <Container className="relative grid min-h-[10rem] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4 lg:min-h-[11.5rem]">
         <MobileNavigation />
         <nav aria-label="Main navigation" className="hidden items-center gap-6 justify-self-start lg:flex">
@@ -53,7 +55,7 @@ export function SiteHeader({ businessName, logoSrc, starSrc }: SiteHeaderProps) 
                 width={96}
                 height={96}
                 loading="eager"
-                className="relative z-10 h-20 w-20 rounded-full bg-bone p-1 object-contain sm:h-24 sm:w-24"
+                className={`${styles.logoImage} relative z-10 rounded-full bg-bone p-1 object-contain`}
               />
             </>
           ) : (

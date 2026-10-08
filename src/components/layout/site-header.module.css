@@ -1,8 +1,14 @@
+.header { position: sticky; top: 0; flex-shrink: 0; background: var(--ink); transition: transform 250ms ease, background-color 250ms ease, border-color 250ms ease; }
+.header[data-hidden="true"] { transform: translateY(-100%); }
+.header:has(:focus-visible), .header:has(dialog[open]) { transform: translateY(0); }
+
+.logoImage { width: 4rem; height: 4rem; }
+
 .star {
   display: block;
   flex: none;
-  width: 9.5rem;
-  height: 9.5rem;
+  width: 7rem;
+  height: 7rem;
   max-width: none;
   animation: star-spin 20s linear infinite;
 }
@@ -24,6 +30,7 @@
 }
 
 @media (min-width: 40rem) {
+  .logoImage { width: 6rem; height: 6rem; }
   .star {
     width: 11rem;
     height: 11rem;

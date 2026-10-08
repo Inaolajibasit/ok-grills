@@ -2,6 +2,7 @@
 
 import { CSSProperties, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { LineTicker } from './line-ticker';
 
 export type TextLoopShape = 'wave' | 'circle' | 'infinity' | 'arch' | 'line';
 export type TextLoopDirection = 'forward' | 'reverse';
@@ -96,7 +97,7 @@ const buildPath = (shape: TextLoopShape, curviness: number, ribbonWidth: number)
   }
 };
 
-const TextLoop = ({
+const CurvedTextLoop = ({
   text = 'React ✦ Bits',
   shape = 'wave',
   path,
@@ -293,5 +294,7 @@ const TextLoop = ({
     </div>
   );
 };
+
+const TextLoop = (props: TextLoopProps) => props.shape === 'line' && !props.path ? <LineTicker {...props} /> : <CurvedTextLoop {...props} />;
 
 export default TextLoop;

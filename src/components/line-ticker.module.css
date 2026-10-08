@@ -1,0 +1,7 @@
+.ribbon { display: flex; align-items: center; width: 100%; overflow: hidden; padding-block: .5rem; }
+.track { display: flex; width: max-content; flex: none; animation: travel 30s linear infinite; }
+.group { display: block; flex: none; min-width: 100vw; padding-right: .5em; white-space: pre; line-height: 1.2; }
+.ribbon[data-pause-hover="true"]:hover .track { animation-play-state: paused !important; }
+@keyframes travel { to { transform: translateX(-50%); } }
+@media (max-width: 47.99rem) { .ribbon { min-height: 5rem !important; font-size: 2rem !important; } }
+@media (prefers-reduced-motion: reduce) { .track { animation: none; } }

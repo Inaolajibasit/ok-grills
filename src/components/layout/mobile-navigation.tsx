@@ -4,58 +4,50 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { headerNavigationLinks } from "./navigation-links";
-import { CartTrigger } from "@/components/cart/cart-trigger";
+import styles from "./mobile-navigation.module.css";
 
 export function MobileNavigation() {
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    if (!open) return;
-
-    function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setOpen(false);
-        toggleRef.current?.focus();
-      }
-    }
-
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
+    const dialog = dialogRef.current;
+    if (!open || !dialog) return;
+    const trigger = toggleRef.current;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialog.showModal();
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const onResize = () => { if (desktop.matches) setOpen(false); };
+    desktop.addEventListener("change", onResize);
+    return () => {
+      desktop.removeEventListener("change", onResize);
+      dialog.close();
+      document.body.style.overflow = overflow;
+      trigger?.focus();
+    };
   }, [open]);
 
   return (
     <div className="lg:hidden">
-      <button
-        ref={toggleRef}
-        type="button"
-        aria-label={open ? "Close menu" : "Open menu"}
-        aria-expanded={open}
-        aria-controls="mobile-navigation"
-        onClick={() => setOpen((value) => !value)}
-        className="inline-flex min-h-11 min-w-11 items-center justify-center border border-line text-bone transition-colors hover:border-brand hover:text-brand"
-      >
-        {open ? <X aria-hidden="true" size={22} /> : <Menu aria-hidden="true" size={22} />}
+      <button ref={toggleRef} type="button" aria-label="Open menu" aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(true)} className="inline-flex min-h-11 min-w-11 items-center justify-center border border-line text-bone transition-colors hover:border-brand hover:text-brand">
+        <Menu aria-hidden="true" size={22} />
       </button>
-      {open && (
-        <nav
-          id="mobile-navigation"
-          aria-label="Mobile navigation"
-          className="absolute inset-x-0 top-full border-b border-line bg-charcoal px-[var(--page-gutter)] py-4 shadow-xl"
-        >
-          {headerNavigationLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="flex min-h-12 items-center border-b border-line text-base font-bold uppercase tracking-[0.08em] text-bone last:border-b-0 hover:text-brand"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <CartTrigger className="mt-3 w-full" onOpen={() => setOpen(false)} />
-        </nav>
-      )}
+      <dialog ref={dialogRef} className={styles.dialog} aria-labelledby="mobile-menu-title" data-lenis-prevent onCancel={(event) => { event.preventDefault(); setOpen(false); }} onClick={(event) => { if (event.target === event.currentTarget) setOpen(false); }}>
+        <div className={styles.panel}>
+          <div className={styles.header}>
+            <h2 id="mobile-menu-title">Menu</h2>
+            <button type="button" onClick={() => setOpen(false)} className={styles.close} aria-label="Close menu" autoFocus><X size={26} aria-hidden="true" /></button>
+          </div>
+          <nav id="mobile-navigation" aria-label="Mobile navigation" className={styles.links}>
+            {headerNavigationLinks.map((link, index) => (
+              <Link key={link.href} href={link.href} onClick={() => setOpen(false)} className={styles.link} style={{ animationDelay: index * 65 + 100 + "ms" }}>{link.label}</Link>
+            ))}
+            <Link href="/cart" onClick={() => setOpen(false)} className={styles.link} style={{ animationDelay: headerNavigationLinks.length * 65 + 100 + "ms" }}>Your cart</Link>
+          </nav>
+        </div>
+      </dialog>
     </div>
   );
 }
